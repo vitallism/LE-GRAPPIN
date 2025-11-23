@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Grappin</title>
+
+<!-- Meta tags pour le partage sur réseaux sociaux -->
+<meta property="og:title" content="Le Grappin - Du temps qu'on l'éditait">
+<meta property="og:description" content="Sur Marien-Def'Allah, Ma'falvard, Marien-bonniface, Marienne-la-bonne-fée et tous les Fesses-Marien">
+<meta property="og:image" content="marien.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Le Grappin">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Le Grappin - Du temps qu'on l'éditait">
+<meta name="twitter:description" content="Sur Marien-Def'Allah, Ma'falvard, Marien-bonniface, Marienne-la-bonne-fée">
+<meta name="twitter:image" content="marien.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='75' font-family='Playfair Display, serif' font-size='80' font-weight='700' fill='%23b79a5a' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Libre+Baskerville:wght@400,700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Libre Baskerville', 'Georgia', serif;
+  background: #0d1208;
+  color: #f2f2e9;
+  line-height: 1.6;
+  padding: 40px;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Texture papier subtile */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(183, 154, 90, 0.03) 2px, rgba(183, 154, 90, 0.03) 4px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+body > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Bandeau supérieur avec date et édition */
+.top-banner {
+  max-width: 1200px;
+  margin: 0 auto 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #d2c9a3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(183, 154, 90, 0.3);
+}
+
+.top-banner .date {
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  text-align: left;
+}
+
+.top-banner .date .gregorian {
+  font-size: 0.75rem;
+}
+
+.top-banner .date .revolutionary {
+  font-size: 0.65rem;
+  color: #b79a5a;
+  font-style: italic;
+}
+
+.top-banner .edition {
+  font-style: italic;
+  text-align: center;
+  flex: 0 0 auto;
+  padding: 0 30px;
+}
+
+.top-banner .price {
+  font-weight: 700;
+  color: #b79a5a;
+  flex: 1;
+  text-align: right;
+}
+
+/* Header masthead */
+.masthead {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+  border-bottom: 4px double #b79a5a;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+/* Ornements décoratifs */
+.masthead::before,
+.masthead::after {
+  content: '◆';
+  position: absolute;
+  top: 50%;
+  font-size: 1.5rem;
+  color: #b79a5a;
+  opacity: 0.6;
+}
+
+.masthead::before {
+  left: 20px;
+}
+
+.masthead::after {
+  right: 20px;
+}
+
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: #b79a5a;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+/* Filets décoratifs autour du titre */
+.masthead h1::before,
+.masthead h1::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b79a5a, transparent);
+}
+
+.masthead h1::before {
+  left: -100px;
+}
+
+.masthead h1::after {
+  right: -100px;
+}
+
+.masthead .subtitle {
+  font-size: 1.3rem;
+  color: #f5f5e9;
+  letter-spacing: 12.5px;
+  text-transform: uppercase;
+  padding: 0;
+  margin-top: -30px;
+  word-spacing: 12.5px;
+}
+
+/* Devise du journal */
+.masthead .motto {
+  display: none;
+}
+
+/* Container principal */
+.newspaper-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #0d1208;
+  padding: 30px;
+  border: 1px solid #3a3a2a;
+}
+
+/* Zone de titre article */
+.article-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #b79a5a;
+}
+
+/* Titre principal */
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #e8e8dc;
+  line-height: 1.1;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Sous-titre */
+.article-deck {
+  font-size: 1.2rem;
+  color: #d2c9a3;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+/* Métadonnées */
+.article-meta {
+  font-size: 0.85rem;
+  color: #b79a5a;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-top: 10px;
+  border-top: 1px solid #3a3a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.article-meta .author-info {
+  flex: 1;
+}
+
+.article-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 0.75rem;
+  color: #d2c9a3;
+}
+
+.article-stats .stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.article-stats .stat-icon {
+  color: #b79a5a;
+}
+
+/* Texte en colonnes */
+.article-text {
+  column-count: 3;
+  column-gap: 40px;
+  column-rule: 1px solid #3a3a2a;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #f5f5e9;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.article-text p {
+  margin-bottom: 1.2em;
+  text-indent: 1.5em;
+}
+
+.article-text p:first-of-type {
+  text-indent: 0;
+}
+
+/* Première lettre (lettrine ornée) */
+.article-text p:first-of-type::first-letter {
+  float: left;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  line-height: 0.8;
+  margin: 5px 10px 0 0;
+  font-weight: 900;
+  color: #b79a5a;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  border: 2px solid rgba(183, 154, 90, 0.3);
+  padding: 10px 15px;
+  background: rgba(183, 154, 90, 0.05);
+}
+
+/* Citations */
+blockquote {
+  border-left: 4px solid #b79a5a;
+  margin: 20px 0;
+  padding: 15px 20px;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #d4b77a;
+  background: rgba(183, 154, 90, 0.05);
+  text-indent: 0 !important;
+  column-span: all;
+  break-inside: avoid;
+}
+
+/* Encadré */
+.encadre {
+  border: 2px solid #b79a5a;
+  padding: 20px;
+  margin: 20px 0;
+  background: rgba(183, 154, 90, 0.08);
+  column-span: all;
+  break-inside: avoid;
+}
+
+.encadre h3 {
+  font-family: 'Playfair Display', serif;
+  color: #b79a5a;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.encadre p {
+  text-indent: 0 !important;
+  font-size: 0.95rem;
+}
+
+
+/* Bouton retour en haut */
+.scroll-top {
+  position: fixed;
+  bottom: 30px;
+  right: 100px;
+  width: 40px;
+  height: 40px;
+  background: rgba(13, 18, 8, 0.2);
+  border: 2px solid rgba(183, 154, 90, 0.3);
+  color: rgba(183, 154, 90, 0.4);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-top:hover {
+  background: rgba(13, 18, 8, 0.9);
+  border-color: #b79a5a;
+  color: #b79a5a;
+  transform: translateY(-5px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .article-text {
+    column-count: 2;
+    column-gap: 30px;
+  }
+  
+  .article-title {
+    font-size: 2.2rem;
+  }
+  
+  .masthead h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+  
+  .masthead h1 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+  
+  .newspaper-container {
+    padding: 20px;
+  }
+  
+  .article-text {
+    column-count: 1;
+  }
+  
+  .article-title {
+    font-size: 1.8rem;
+  }
+  
+  .article-deck {
+    font-size: 1.05rem;
+  }
+}
+
+/* Éviter les coupures de paragraphes */
+.article-text p {
+  break-inside: avoid;
+}
+
+/* Image d'illustration - placée avant le texte */
+.article-illustration {
+  margin: 0 0 30px 0;
+  column-span: all;
+  break-inside: avoid;
+}
+
+.article-illustration img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #b79a5a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+.article-illustration img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 16px rgba(183, 154, 90, 0.5);
+}
+
+.article-illustration figcaption {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #d2c9a3;
+  font-style: italic;
+  text-align: left;
+  padding-left: 5px;
+}
+
+/* Popup pour l'image agrandie */
+.image-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.image-popup.active {
+  display: flex;
+}
+
+.image-popup img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid #b79a5a;
+  box-shadow: 0 8px 32px rgba(183, 154, 90, 0.6);
+}
+
+.image-popup .close-popup {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 3rem;
+  color: #b79a5a;
+  font-weight: 300;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.image-popup .close-popup:hover {
+  transform: scale(1.2);
+}
+
+/* Boutons de navigation PILE / FACE */
+.navigation-buttons {
+  position: fixed;
+  bottom: 30px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navigation-buttons.left {
+  left: 20px;
+}
+
+.navigation-buttons.right {
+  right: 20px;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 120px;
+  background: rgba(13, 18, 8, 0.2);
+  border: 2px solid rgba(183, 154, 90, 0.3);
+  color: rgba(183, 154, 90, 0.4);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.nav-btn:hover {
+  background: rgba(13, 18, 8, 0.9);
+  border-color: #b79a5a;
+  color: #b79a5a;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(183, 154, 90, 0.4);
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* Animation de glissement des articles */
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.newspaper-container.slide-out-left {
+  animation: slideOutLeft 0.5s ease-in-out forwards;
+}
+
+.newspaper-container.slide-in-right {
+  animation: slideInRight 0.5s ease-in-out forwards;
+}
+
+.newspaper-container.slide-out-right {
+  animation: slideOutRight 0.5s ease-in-out forwards;
+}
+
+.newspaper-container.slide-in-left {
+  animation: slideInLeft 0.5s ease-in-out forwards;
+}
+
+/* Signature de l'auteur */
+.author-signature {
+  margin-top: 40px;
+  text-align: right;
+  font-style: italic;
+  color: #b79a5a;
+  font-size: 1.1rem;
+  font-family: 'Playfair Display', serif;
+  column-span: all;
+}
+
+.author-signature::before {
+  content: '✒ ';
+}
+
+/* Encadré "À lire également" */
+.related-box {
+  border: 2px solid #b79a5a;
+  padding: 20px;
+  margin-top: 40px;
+  background: rgba(183, 154, 90, 0.08);
+  column-span: all;
+}
+
+.related-box h3 {
+  font-family: 'Playfair Display', serif;
+  color: #b79a5a;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.related-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.related-box li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(183, 154, 90, 0.2);
+  font-size: 0.95rem;
+}
+
+.related-box li:last-child {
+  border-bottom: none;
+}
+
+.related-box li::before {
+  content: '▸ ';
+  color: #b79a5a;
+  margin-right: 8px;
+}
+
+.related-box a {
+  color: #d2c9a3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.related-box a:hover {
+  color: #b79a5a;
+  text-decoration: underline;
+}
+
+/* Pied de page avec infos */
+.newspaper-footer {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 2px solid rgba(183, 154, 90, 0.3);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #d2c9a3;
+  gap: 20px;
+}
+
+.newspaper-footer .issn {
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.newspaper-footer .barcode-container {
+  justify-self: center;
+}
+
+.newspaper-footer .contact {
+  font-style: italic;
+  text-align: right;
+  font-size: 0.65rem;
+}
+
+/* Code-barres / Visualiseur audio */
+.barcode-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.audio-control {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #b79a5a;
+  background: transparent;
+  color: #b79a5a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.audio-control:hover {
+  background: rgba(183, 154, 90, 0.2);
+  transform: scale(1.1);
+}
+
+.barcode {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 40px;
+}
+
+.barcode span {
+  width: 2px;
+  background: #b79a5a;
+  opacity: 0.6;
+  transition: height 0.1s ease;
+}
+
+/* Hauteurs par défaut visibles pour les barres */
+.barcode span:nth-child(1) { height: 25px; }
+.barcode span:nth-child(2) { height: 35px; }
+.barcode span:nth-child(3) { height: 20px; }
+.barcode span:nth-child(4) { height: 30px; }
+.barcode span:nth-child(5) { height: 40px; }
+.barcode span:nth-child(6) { height: 28px; }
+.barcode span:nth-child(7) { height: 22px; }
+.barcode span:nth-child(8) { height: 38px; }
+.barcode span:nth-child(9) { height: 32px; }
+.barcode span:nth-child(10) { height: 26px; }
+.barcode span:nth-child(11) { height: 34px; }
+.barcode span:nth-child(12) { height: 24px; }
+.barcode span:nth-child(13) { height: 36px; }
+.barcode span:nth-child(14) { height: 30px; }
+.barcode span:nth-child(15) { height: 28px; }
+
+.barcode.playing span {
+  animation: audioWave 0.5s ease-in-out infinite;
+}
+
+.barcode span:nth-child(1) { animation-delay: 0s; }
+.barcode span:nth-child(2) { animation-delay: 0.05s; }
+.barcode span:nth-child(3) { animation-delay: 0.1s; }
+.barcode span:nth-child(4) { animation-delay: 0.15s; }
+.barcode span:nth-child(5) { animation-delay: 0.2s; }
+.barcode span:nth-child(6) { animation-delay: 0.25s; }
+.barcode span:nth-child(7) { animation-delay: 0.3s; }
+.barcode span:nth-child(8) { animation-delay: 0.35s; }
+.barcode span:nth-child(9) { animation-delay: 0.4s; }
+.barcode span:nth-child(10) { animation-delay: 0.45s; }
+.barcode span:nth-child(11) { animation-delay: 0.5s; }
+.barcode span:nth-child(12) { animation-delay: 0.55s; }
+.barcode span:nth-child(13) { animation-delay: 0.6s; }
+.barcode span:nth-child(14) { animation-delay: 0.65s; }
+.barcode span:nth-child(15) { animation-delay: 0.7s; }
+
+@keyframes audioWave {
+  0%, 100% {
+    height: 15px;
+  }
+  50% {
+    height: 40px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Boutons de navigation -->
+<div class="navigation-buttons left">
+  <button class="nav-btn" onclick="nextArticle()">FACE</button>
+</div>
+
+<div class="navigation-buttons right">
+  <button class="nav-btn" onclick="previousArticle()">PILE</button>
+</div>
+
+<!-- Bouton retour en haut -->
+<button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+<div class="top-banner">
+  <div class="date" id="location">Chargement...</div>
+  <div class="edition">N° 01 — 7ᵉ année</div>
+  <div class="price">Prix : 2,50€</div>
+</div>
+
+<div class="masthead">
+  <h1>[ LE GRAPPIN ]</h1>
+  <p class="subtitle">○ METTRE SA MAIN AU FEU ○</p>
+</div>
+
+<div class="newspaper-container">
+  <div class="article-header">
+    <h2 class="article-title" id="title"></h2>
+    <div class="article-deck" id="deck"></div>
+    <div class="article-meta">
+      <div class="author-info" id="meta"></div>
+      <div class="article-stats">
+        <div class="stat">
+          <span class="stat-icon">👁</span>
+          <span id="viewCount">0</span> vues
+        </div>
+        <div class="stat">
+          <span class="stat-icon">⏱</span>
+          <span id="readTime">0</span> min
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Image d'illustration -->
+  <div id="articleIllustration"></div>
+  
+  <div class="article-text" id="articleContent"></div>
+  
+  <div class="author-signature">Venehon</div>
+  
+  <div class="related-box">
+    <h3>À lire également</h3>
+    <ul>
+      <li><a href="#">Rien !</a></li>
+      <li><a href="#">Toujours rien !</a></li>
+      <li><a href="#">Pas plus !</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Popup pour image agrandie -->
+<div class="image-popup" id="imagePopup" onclick="closeImagePopup()">
+  <span class="close-popup">×</span>
+  <img id="popupImage" src="" alt="">
+</div>
+
+<div class="newspaper-footer">
+  <div class="issn">ISSN 0000-0001</div>
+  <div class="barcode-container">
+    <button class="audio-control" id="audioToggle" onclick="toggleAudio()">▶</button>
+    <div class="barcode" id="audioVisualizer">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="contact" id="contactEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="accfc3d9dedec5c9de82c8c9df82c0c9cfd8c9d9dedf82c9d882c8c9c0cdd8c9d9dedf82cdc2c3c2d5c1c9dfecc0c9cbdecddcdcc5c282c9c0d5dfc9c982cade">[email&#160;protected]</a></div>
+</div>
+
+<!-- Audio élément caché -->
+<audio id="backgroundAudio" loop>
+  <source src="vivre.mp3" type="audio/mpeg">
+  <!-- Place ton fichier vivre.mp3 dans le même dossier que ce fichier HTML -->
+</audio>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Lieux littéraires (réels et fantaisistes)
+const literaryLocations = [
+  "Rue de la Huchette",
+  "Combray",
+  "Yoknapatawpha County",
+  "Macondo",
+  "Prague, Château de Kafka",
+  "Perspective Nevski",
+  "Cnossos",
+  "Le Désert des Tartares",
+  "Middlemarch",
+  "Casterbridge",
+  "Rue Eccles",
+  "Orbis Tertius",
+  "La Colonie Pénitentiaire",
+  "Wessex",
+  "Région des Lacs",
+  "Gormenghast",
+  "Casares, Argentine",
+  "Vienne, Café Central",
+  "Domaine mystérieux",
+  "Pays de Nunuche",
+  "Mentel Klondike",
+  "Royaume de Jauja"
+];
+
+// Emails fantaisistes et drôles
+const fantasyEmails = [
+  "courrierdesdelateurs@legrappin.elysee.fr",
+  "redactiondesveritesvraiessurtoutourien@legrappin.assemblee-nationale.fr",
+  "servicedeshomardsderugysaucelarcher@legrappin.senat.fr",
+  "bureaudesragotsdesrumeursetdesbruitsquicourts@legrappin.academie-francaise.fr",
+  "departement.des.secrets.mal.gardes@legrappin.matignon.gouv.fr",
+  "celluleindiscretion@legrappin.conseil-constitutionnel.fr",
+  "unitedesnomsdempruntetdespseudonymes.douteux@legrappin.culture.gouv.fr",
+  "divisiondeslanguesdeviperesdeslanguesdeboisetdeslanguesdeputes-dans-le-fiel@legrappin.interieur.gouv.fr",
+  "servicedesnonlieuxetdessecretsdepolichinelle@legrappin.quai-dorsay.fr",
+  "bureaudesnonlieuxetdessousentendus@legrappin.justice.gouv.fr",
+  "agencedesrevelationsfracassantesetdestempetesdansunverredeau@legrappin.elysee.fr",
+  "secretariatdesenculesdelandegrace@legrappin.premier-ministre.gouv.fr"
+];
+
+// Choisir une localisation aléatoire
+function setRandomLocation() {
+  const today = new Date();
+  
+  // Date grégorienne
+  const gregorianDate = today.toLocaleDateString('fr-FR', { 
+    weekday: 'long', 
+    day: 'numeric', 
+    month: 'long', 
+    year: 'numeric' 
+  });
+  const gregorianTime = today.toLocaleTimeString('fr-FR', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  
+  // Date révolutionnaire (approximation fantaisiste)
+  const revolutionaryMonths = [
+    'Vendémiaire', 'Brumaire', 'Frimaire',
+    'Nivôse', 'Pluviôse', 'Ventôse',
+    'Germinal', 'Floréal', 'Prairial',
+    'Messidor', 'Thermidor', 'Fructidor'
+  ];
+  const revolutionaryDays = [
+    'Primidi', 'Duodi', 'Tridi', 'Quartidi', 
+    'Quintidi', 'Sextidi', 'Septidi', 'Octidi', 
+    'Nonidi', 'Décadi'
+  ];
+  
+  const dayOfMonth = today.getDate();
+  const monthIndex = today.getMonth();
+  const revYear = today.getFullYear() - 1792 + 233; // An 233 de la République
+  const revMonth = revolutionaryMonths[monthIndex];
+  const revDay = revolutionaryDays[dayOfMonth % 10];
+  const revHour = Math.floor((today.getHours() * 10) / 24); // Heure décimale
+  
+  const revolutionaryDate = `${revDay} ${dayOfMonth} ${revMonth} An ${revYear} - ${revHour}h décimales`;
+  
+  const randomLocation = literaryLocations[Math.floor(Math.random() * literaryLocations.length)];
+  
+  document.getElementById('location').innerHTML = `
+    <div class="gregorian">${randomLocation}, ${gregorianDate.charAt(0).toUpperCase() + gregorianDate.slice(1)} — ${gregorianTime}</div>
+    <div class="revolutionary">${revolutionaryDate}</div>
+  `;
+}
+
+// Choisir un email fantaisiste au hasard
+function setRandomEmail() {
+  const randomEmail = fantasyEmails[Math.floor(Math.random() * fantasyEmails.length)];
+  document.getElementById('contactEmail').textContent = randomEmail;
+}
+
+// Contrôle audio et visualiseur
+let isPlaying = false;
+
+function toggleAudio() {
+  const audio = document.getElementById('backgroundAudio');
+  const button = document.getElementById('audioToggle');
+  const visualizer = document.getElementById('audioVisualizer');
+  
+  if (isPlaying) {
+    audio.pause();
+    button.textContent = '▶';
+    visualizer.classList.remove('playing');
+    isPlaying = false;
+  } else {
+    audio.play();
+    button.textContent = '⏸';
+    visualizer.classList.add('playing');
+    isPlaying = true;
+  }
+}
+
+// Bouton retour en haut
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// Afficher/cacher le bouton selon le scroll
+window.addEventListener('scroll', () => {
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const scrollPosition = window.scrollY;
+  
+  if (scrollPosition > 300) {
+    const opacity = Math.min((scrollPosition - 300) / 400, 1);
+    scrollTopBtn.style.opacity = opacity;
+    scrollTopBtn.style.pointerEvents = 'auto';
+    scrollTopBtn.style.background = `rgba(13, 18, 8, ${opacity * 0.95})`;
+    scrollTopBtn.style.borderColor = `rgb(183, 154, 90)`;
+    scrollTopBtn.style.color = `rgb(183, 154, 90)`;
+  } else {
+    scrollTopBtn.style.opacity = 0;
+    scrollTopBtn.style.pointerEvents = 'none';
+  }
+});
+
+// Calculer le temps de lecture estimé (basé sur 200 mots/minute)
+function calculateReadTime(text) {
+  const wordsPerMinute = 200;
+  const words = text.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return minutes;
+}
+
+// Générer un nombre de vues aléatoire mais cohérent
+function generateViewCount(articleIndex) {
+  // Les articles plus anciens ont plus de vues
+  const baseViews = 100;
+  const randomFactor = Math.floor(Math.random() * 500);
+  const ageMultiplier = (articlesDatabase.length - articleIndex) * 50;
+  return baseViews + randomFactor + ageMultiplier;
+}
+
+// Contenu de l'article
+// Base de données des articles (ajouter vos articles ici)
+const articlesDatabase = [
+  {
+    title: "Du temps qu'on l'éditait",
+    deck: "Sur Marien-Def'Allah, Ma'falvard, Marien-bonniface, Marienne-la-bonne-fée et tous les Fesses-Marien ou tous ses autres petits-noms que l'on donne aux soubrettes !",
+    meta: "Par Venehon — Dimanche 23 novembre 2025",
+    content: `Mille fois le nihilisme, mille fois le paganisme plutôt que de voir ramper des chrétiens traîtres à leur foi ; avide de plus que Dieu de ce Dieu qui leur fût donné. Oh : Du temps qu’on méditait !
+
+
+
+Pourquoi ont-ils donc une foi si vacillante ces oiseaux-là ? Pourquoi les voit-on baver devant les mouquères à trois franges et un colis-volé ? Pourquoi sont-ils si faibles, ont-ils même ce petit faible qui leur vient du pêché-mignon, à croire que Dieu serait pauvre comme ils sont ? 
+
+Si Dieu est tout-puissant, Dieu sait bien qui donc il doit armer pour se sauver - se convertir c’est alors considérer non pas que le monde est monde mais que tout ce que l’église à fait de jadis a nos jours, et qui fut tant aimé, tant estimé par ses mirlitons jouisseurs, dam ces queues d’écrevisses ; chrétiens-bonifaces ; ce serait considérer que tout cela n’a pas été l’œuvre de Dieu ; et donc qu’à peu près tout le Christianisme fut une hérésie.
+
+
+
+ Comment peuvent-ils encore se dire voisins de leur Dieu si c’est pour en changer comme on change de chemises ? Et pour s’effrayer du destin de leur religion sitôt qu’au matin la cloche n’a pas sonné - diable que la messe soit reporté, que le prêtre découche, que toutes les femmes soient folles ou vierges de premières communiantes ; vraiment amis faut-ils qu’on soit fous pour croire que Dieu peut-être vaincu si nous le croyons meilleur que les hommes - de croire que la folie des hommes, souvent lézarde, saurait atteindre et définir la vérité divine ? Non vraiment c’est faire bien peu de cas de Dieu. 
+
+
+
+L’adversité n’est rien pour nous, nous ne sommes pas les défaitistes de Dieu, ni même les défaillants ; nous ne changeons pas de tribune sitôt que nous voyons le score nous échappait ; mais c’est qu’ils sont à peu près tous moins encore des croyants que des supporters ; ils ont besoin d’aller en messe comme on va au match ; ils ont besoin de voir que les vicaires, les prêtres, les diacres, les archimoines soient bientôt comme des joueurs en poste ; c’est que leur plus grande aventure mystique n’a jamais été que Saint-Etienne.
+
+La véritable foi est inaliénable ; elle ne s’occupe pas de savoir ce qu’est le monde, elle devrait savoir se préserver d’elle-même sans quoi de sa tentation l’officier est coupable.
+
+La foi n’est pas une église et si votre foi n’a pas été Dieu lui-même ; c’est donc que jamais vous n’aurez cru. 
+
+
+
+Car tout sent Dieu de ce qui vous fait du bien ; mais rien ne sent le Diable dans les malheurs que Dieu vous fait. Car si vous souffrez, c’est d’abord d’avoir aimé vous étant trompé, ou bien de n’être jamais entrer au fond de vos sentiments - êtes-vous triste de n’avoir jamais accomplis cette amour ? Certainement, certainement - ce sera de ce jour que Foi a défailli.
+
+Ce ne sera jamais de voir parader l’ennemi de vos “valeurs” dont je ne suis pas bien-sûr de vous voir les garants ; si des homosexuels mon Dieu vous suffise pour renier votre Dieu ; eh bien, quel infidèle vous faites au bras de Mehmet l’amant du soir ; c’est que tout les Marien-trépané n’ont qu’une seule et véritable place : sinon le sommier d’Haroun El-Poussah, n’être pas moins croyant que le vagin trismégiste d’Asia Shéhérazade ! 
+
+
+
+Ah Marien-bonniface ! Comme je l’imagine ce mètre-carré d’homme lavable en machine - accolyté-minute aux bras d’un quintal de Mahmoud ! Il lui raconterait de ces histoires de petite vierge bonne et décaloteuse : toujours renouvellant, les jours de diette ; ces histoires orléanaise avec Madame de la Courtefigue, psychiatre du palais d’Orient ; que ne nous écrit il pas d’ailleurs son Orient au lieu que de nous alimenter d’un Orléans bouffi de noirs, Dieu ! Du temps qu’on l’éditait !
+
+
+
+Ce fiéffé parrain de Charles Dantzig, qu’il aura fait du bien à toute la littérature Française ! Je veux dire, épargnez-nous grand dieu de dieu, toutes ces furoncles écrivains qui nous viennent ainsi au dos de toutes les écritures, bibles et éditions sollenisé - que Saint-Dantzig, dieu de mes Dieux soit-il loué ! que Saint-Dantzig aura empêché d’advenir !
+
+
+
+Oui, vraiment, ce fut une grande destinée que celle de Marien Defalvard - d’abord né comme on nait de coutûme, il eut une enfance somme toute clergymen ; on se souvient qu’il brocardait son cher Papa sous les soutanes, entre les bites aéronef de nos diacres et consorts ! Dieu ; que ne voyait-on pas le Marien-Trépané croyant que la couille du père Benôit n’était en vérité que le corps-du-christ, offrande de Saint-Geneviève et l’hostie plus-sainte-encore dans laquelle ce Marien-famélique croquait avec la passion de Pierre les pieds du Fils ; hors Mariendegabale, né sur un berceau de sperme ! mort sur un oreiller de gland - que faisait-il d’autres à son jeune âge que de croire que l’émasculé-coucouillon de son père Benoît, et surtout la semence qu’il raclait de ses ongles au soir, comme les épluchures des cierges de la Sacristie - que ne croyait-il pas ce fublique-animal ; ce Mariendelaballe - qu’il s’agissait d’eau-bénite, cent fois sacrée qui ressortait du mât de la bite de ce gentil et tendre Père, Diable ! 
+
+
+
+Qu’il aimait cela, Clergymen en sus – on le fit devenir porteur des myrrhes, des encens, des lampions – thuriféraire ce garçonnet qui n’aurait jamais plû à aucun Gide, Montherlant, Duvert et diable sait-qui-d’autres ! Des milliards sont connus de ces êtres qui bourrichent de petit-Marien ! Mais voilà que notre thuriféraire s’occupait alors de répandre les odeurs..
+
+ 
+
+Ah enfin que toute cette fable cesse ! ça ne sert à rien – qu’il aille donc, que Dieu sache et lui redise combien depuis dix ans j’aurais essayé de le ravir à ces destins de convertis léger » comme en d’autres-temps encore nous avions vu paraitrent les « confinés légers » - Dieu te voit Marien ! Dieu sait combien tu es sarkozique ; combien la prison t’as rendu traboulé pour ses rabab et cie de la Santé ! Tu n’en dors plus la nuit de te les imaginer aviné de ces miels de jasmin de tout leurs pays-tièdes, tu n’en dors plus Marienne ! De t’imaginer Mahdjik l’Ouzbek ascendant Numide, à côté de toi, touchant tes deux grosses miches, cul-corne de gazelle– tandis que tu ferais la prière, méditerait rubis sur ongle la shahada et tout accompagnant, ces crustacés théologiques que tu hais tant chez les foires du trônes, chez les pauvres Français que tu conspues, mais que tu admires comme d’un parfum chez ses macramés venus d’ailleurs ou d’ici-bas. Dam ! Du temps qu’on l’enculait ! 
+
+
+
+Voilà pourquoi je ne suis plus Chrétien qui fut une très belle religion d’enfant ; mais comme il y a une littérature pour enfant, la foi doit pouvoir suivre la même évolution : il y a des religions pour les enfants. 
+
+C’est d’ailleurs de la simplicité du dictam chrétiens qu’est né pour l’anéantir tout cet appareillage pseudo-critique qu’est la théologie - mais cete maquignonade pour les filous et les philosophes en mal de Dieu ne convient plus aux âmes d’outremoi qui sont de simples, de bons et de gentils êtres - oh dieu ! J’ai besoin de pouvoir aimer ce que je crois. Si Dieu m’en donne j’ai besoin de le posséder comme je devrais le faire avec une femme. J’ai besoin de pénétrer Dieu, j’ai besoin de le baiser.Voilà pourquoi je me cherche un Dieu-Neuf, Dieu-Volage - car j’ai besoin qu’il soit un peu faune ou satyre. Je veux de ce Dieu-Putain. Je veux d’un Dieu-qui-se-maquille.Je n’ai pas besoin d’un Dieu qui m’aime. Je veux d’un Dieu que je puisse aimer. A Dieu-vat tout ses autres Dieu passif en Diable et qui m’apporterait la paix des champs ! Je veux un Dieu que je puisse enculer, parce que je l’aime. Et qu’il soit plein de moi, et moi plein de lui.Les Dieux disparates, distant, dans les nimbes - eh bien, qu’ils y restent !
+
+Ils reviendront alors vers nous quand ils auront par-trop envier. Enfin, ils auront de quoi se dire des Dieux-jaloux. 
+
+
+
+Je suis trop cerné de ces Dieux-musulmans qui cherchent à ce que je porte un voile de grande-nonne de ces temps jadis ; comme si j’étais la franche houri madame, passant pour n’être pas un homme pour des Afghans ; convertissant mon cul pour le sourire des uns - diable non ! J’aime aimer, je n’aime pas croire sans amour ; je veux fondre Dieu pour m’y fondre et le reste n’est pas envisageable. Du temps que j’écrivais !
+
+
+
+C'était cela le Christianisme, le grand-Christianisme des enfants et des imbéciles dont je me sais un homme averti ! Que revienne à leurs heures ses cancres de Marie-la-vierge ! Qu'on revienne sortir du confessionnal en ayant confesser si peu ; dit si peu, conjurer si peu - que nos consciences redeviennent un peu torves et malignes ! Finit tout ses hommes devenus des anges - les innocents ! Les faux-innocents, diable ! Ces menteurs, ces hypocrites ! Qu'on cesse donc enfin la pantomime de Dieu !
+
+
+
+Qu’ont ils fait de ce bon Christianisme-canaille toutes ses âmes sottes ; les connaisseurs - les fesses-marien ? Humanisme, réforme, contre-reforme, jansénisme, jesuitisme, thomisme, neo-thomisme. Catéchisme vu comme un mandarinat : en vérité le christianisme a été chassé des classes populaires par les chrétiens eux-mêmes qui se voulaient plus protestants que les protestants. On a vu des fêtes se faire interdire pour idolâtrie au fait que la vie religieuse ne retombât seul qu’aux actions de monseigneur le prêtre ; les actes des aprêtres ! - hors, ce ne sont jamais les intellectuels qui savent créer les formes et les représentations d’une foi vraiment naïve qu’ils ont méprisaient ; et désormais les voilà qu’ils se lamentent d’avoir perdu en ayant le culot d’haïr le peuple en supplément, qu’ils tiennent responsable de cette désaffection. Mais ne nous y trompons pas : on est toujours dans le même mouvement aujourd’hui Les foires, les fêtes du village disparaissent, les cours pratiques à l’école ont disparus parce que l’intellectualisme fait ses classes. Il faut saborder tout ses gens, tout revoir, refaire la révolution. Du temps qu’on intriguait.
+
+[IMAGE]marien.png[/IMAGE][LEGENDE]Portrait de Marien, converti-léger[/LEGENDE]`
+  },
+  // Pour ajouter un nouvel article, copiez la structure ci-dessous :
+  /*
+  {
+    title: "Titre de votre article",
+    deck: "Sous-titre ou accroche de votre article",
+    meta: "Par Auteur — Date",
+    content: `Votre texte ici...
+    
+    Utilisez [CITATION]texte[/CITATION] pour les citations.
+    
+    Utilisez [ENCADRE]
+    Titre de l'encadré
+    Texte de l'encadré
+    [/ENCADRE]
+    
+    Utilisez [IMAGE]url-de-image.jpg[/IMAGE][LEGENDE]Légende de l'image[/LEGENDE] pour ajouter une image`
+  },
+  */
+];
+
+let currentArticleIndex = 0;
+
+const articleData = articlesDatabase[currentArticleIndex];
+
+// Fonction pour convertir le texte brut en HTML
+function formatContent(text) {
+  text = text.replace(/\[ENCADRE\]([\s\S]*?)\[\/ENCADRE\]/g, (match, content) => {
+    const lines = content.trim().split('\n');
+    const title = lines[0];
+    const body = lines.slice(1).join('\n');
+    return `<div class="encadre"><h3>${title}</h3><p>${body}</p></div>`;
+  });
+  
+  text = text.replace(/\[CITATION\](.*?)\[\/CITATION\]/g, '<blockquote>$1</blockquote>');
+  
+  // Retirer les images du texte (elles seront affichées séparément)
+  text = text.replace(/\[IMAGE\](.*?)\[\/IMAGE\](?:\[LEGENDE\](.*?)\[\/LEGENDE\])?/g, '');
+  
+  const paragraphs = text.trim().split(/\n\s*\n/);
+  
+  return paragraphs.map(para => {
+    para = para.trim();
+    if (!para) return '';
+    if (para.startsWith('<blockquote') || para.startsWith('<div class="encadre"')) {
+      return para;
+    }
+    return `<p>${para}</p>`;
+  }).filter(p => p).join('\n    ');
+}
+
+// Extraire l'image d'un article
+function extractImage(text) {
+  const imageMatch = text.match(/\[IMAGE\](.*?)\[\/IMAGE\](?:\[LEGENDE\](.*?)\[\/LEGENDE\])?/);
+  if (imageMatch) {
+    return {
+      url: imageMatch[1],
+      caption: imageMatch[2] || ''
+    };
+  }
+  return null;
+}
+
+// Ouvrir le popup d'image
+function openImagePopup(imageUrl) {
+  const popup = document.getElementById('imagePopup');
+  const popupImage = document.getElementById('popupImage');
+  popupImage.src = imageUrl;
+  popup.classList.add('active');
+}
+
+// Fermer le popup d'image
+function closeImagePopup() {
+  const popup = document.getElementById('imagePopup');
+  popup.classList.remove('active');
+}
+
+async function writeArticle() {
+  const titleElement = document.getElementById('title');
+  const deckElement = document.getElementById('deck');
+  const metaElement = document.getElementById('meta');
+  const contentElement = document.getElementById('articleContent');
+  const illustrationElement = document.getElementById('articleIllustration');
+  const viewCountElement = document.getElementById('viewCount');
+  const readTimeElement = document.getElementById('readTime');
+  
+  const currentArticle = articlesDatabase[currentArticleIndex];
+  const formattedContent = formatContent(currentArticle.content);
+  
+  // Afficher le contenu
+  titleElement.innerHTML = currentArticle.title;
+  deckElement.innerHTML = currentArticle.deck;
+  metaElement.innerHTML = currentArticle.meta;
+  contentElement.innerHTML = formattedContent;
+  
+  // Gérer l'image d'illustration
+  const image = extractImage(currentArticle.content);
+  if (image) {
+    illustrationElement.innerHTML = `
+      <figure class="article-illustration">
+        <img src="${image.url}" alt="${image.caption || 'Illustration'}" onclick="openImagePopup('${image.url}')">
+        <figcaption>${image.caption}</figcaption>
+      </figure>
+    `;
+  } else {
+    illustrationElement.innerHTML = '';
+  }
+  
+  // Mettre à jour le temps de lecture (automatique)
+  readTimeElement.textContent = calculateReadTime(currentArticle.content);
+  
+  // Mettre à jour le compteur de vues (persistant avec localStorage)
+  const viewKey = `article_views_${currentArticleIndex}`;
+  let views = parseInt(localStorage.getItem(viewKey) || '0');
+  views++;
+  localStorage.setItem(viewKey, views.toString());
+  viewCountElement.textContent = views;
+}
+
+// Navigation vers l'article précédent (PILE)
+function previousArticle() {
+  if (currentArticleIndex > 0) {
+    const container = document.querySelector('.newspaper-container');
+    
+    // Animation de sortie vers la droite
+    container.classList.add('slide-out-right');
+    
+    setTimeout(() => {
+      currentArticleIndex--;
+      container.classList.remove('slide-out-right');
+      container.classList.add('slide-in-left');
+      
+      writeArticle();
+      setRandomLocation();
+      setRandomEmail();
+      
+      setTimeout(() => {
+        container.classList.remove('slide-in-left');
+      }, 500);
+    }, 500);
+  }
+}
+
+// Navigation vers l'article suivant (FACE)
+function nextArticle() {
+  if (currentArticleIndex < articlesDatabase.length - 1) {
+    const container = document.querySelector('.newspaper-container');
+    
+    // Animation de sortie vers la gauche
+    container.classList.add('slide-out-left');
+    
+    setTimeout(() => {
+      currentArticleIndex++;
+      container.classList.remove('slide-out-left');
+      container.classList.add('slide-in-right');
+      
+      writeArticle();
+      setRandomLocation();
+         setRandomEmail();
+      
+      setTimeout(() => {
+        container.classList.remove('slide-in-right');
+      }, 500);
+    }, 500);
+  }
+}
+
+window.addEventListener('load', () => {
+  setRandomLocation();
+  setRandomEmail();
+  writeArticle();
+});
+</script>
+
+</body>
+</html>
